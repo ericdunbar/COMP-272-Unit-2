@@ -1,5 +1,5 @@
 /**
- * @description Obtained from Open Data Structures by Pat Morin
+ * @description Obtained from Open Data Structures by Pat Morin.
  * @author Pat Morin
  *
  * @param <T>

@@ -145,7 +145,7 @@ public class ChainedHashTable<T> implements USet<T> {
 		 * http://www.javapractices.com/topic/TopicAction.do?Id=23
 		 */
 
-		return (z * x.hashCode()) >>> (w - d);;
+		return (z * x.hashCode()) >>> (w - d);
 	}
 
 	/**
