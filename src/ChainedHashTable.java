@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * @description A chained hash table from Open Data Structures by Pat Morin.
+ * @description 5.1 A chained hash table from Open Data Structures by Pat Morin.
  *              This class implements hashing with chaining using multiplicative
  *              hashing.
  * @author Pat Morin
@@ -38,6 +38,7 @@ public class ChainedHashTable<T> implements USet<T> {
 	 * @param tableSize size of empty table
 	 * @return array of lists
 	 */
+	@SuppressWarnings("unchecked")
 	protected List<T>[] allocTable(int tableSize) {
 		List<T>[] table = new ArrayList[tableSize];
 		for (int i = 0; i < tableSize; i++) {
@@ -195,6 +196,19 @@ public class ChainedHashTable<T> implements USet<T> {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		/*
+		 * Programming With Assertions. (n.d.). Retrieved July 22, 2016, from
+		 * https://docs.oracle.com/javase/8/docs/technotes/guides/language/
+		 * assert.html
+		 * 
+		 * Eclipse: Enable assertions. (n.d.). Retrieved July 22, 2016, from
+		 * http://stackoverflow.com/questions/5509082/eclipse-enable-assertions
+		 * 
+		 * 1. Go to the menu Run, and then to the menu item Run Configurations;
+		 * 2. In the left panel, go to Java Application, and then go to
+		 * Assertions; 3. In the right panel, choose the tab Arguments; and, 4.
+		 * Under the field for VM arguments, type -ea to enable assertions.
+		 */
 		int n = 100000;
 		ChainedHashTable<Integer> t = new ChainedHashTable<Integer>();
 		for (int i = 0; i < n; i++) {
