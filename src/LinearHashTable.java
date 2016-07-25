@@ -15,14 +15,27 @@ public class LinearHashTable<T> {
 	int n; // track number of elements
 	int q; // track number of non-null values
 	int d; // current dimension of array
-	T[] t; // store data elements, t.length = 2^d
+	T[] t; // table to store data elements, t.length = 2^d
+	T del; // the 'del' state
 
 	protected static final int w = 32; // from sample code
 	protected static final int r = 8; // from sample code
 	Factory<T> f; // from sample code
 
-	
-	
+	/**
+	 * Constructs new instance of a linear hash table. From ODS. From sample
+	 * code.
+	 * 
+	 * @param nil an object of class T that will never be stored in the table
+	 */
+	@SuppressWarnings("unchecked")
+	public LinearHashTable(T nil) {
+		this.del = nil;
+		f = new Factory<T>((Class<T>) nil.getClass());
+		d = 1;
+		t = f.newArray(1 << d);
+	}
+
 	/**
 	 * Finds and returns the element in x, if present. From ODS.
 	 * 
@@ -121,12 +134,9 @@ public class LinearHashTable<T> {
 		return tab[x.hashCode() >>> w - d];
 	}
 
-	public int hash(T x){
+	public int hash(T x) {
 		int h = x.hashCode();
-		return (tab[0][h&0xff]
-				^ tab[1][(h>>>8)&0xff]
-				^ tab[2][(h>>>16)&0xff]
-				^ tab[3][(h>>>24)&0xff])
-				>>> (w-d);
+		return (tab[0][h & 0xff] ^ tab[1][(h >>> 8) & 0xff] ^ tab[2][(h >>> 16) & 0xff]
+				^ tab[3][(h >>> 24) & 0xff]) >>> (w - d);
 	}
 }
