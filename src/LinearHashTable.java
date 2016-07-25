@@ -17,6 +17,12 @@ public class LinearHashTable<T> {
 	int d; // current dimension of array
 	T[] t; // store data elements, t.length = 2^d
 
+	protected static final int w = 32; // from sample code
+	protected static final int r = 8; // from sample code
+	Factory<T> f; // from sample code
+
+	
+	
 	/**
 	 * Finds and returns the element in x, if present. From ODS.
 	 * 
@@ -65,7 +71,7 @@ public class LinearHashTable<T> {
 	 * @return null if not present, otherwise element
 	 */
 	public T remove(T x) {
-		// TODO what happens if there are no nulls? Is that possible?
+		// TODO what happens if there are no nulls? Q. Is that possible? A. No.
 		int i = hash(x);
 		while (t[i] != null) {
 			T element = t[i];
@@ -105,4 +111,22 @@ public class LinearHashTable<T> {
 		}
 	}
 
+	/**
+	 * From ODS. Page 121.
+	 * 
+	 * @param x
+	 * @return
+	 */
+	public int idealhash(T x) {
+		return tab[x.hashCode() >>> w - d];
+	}
+
+	public int hash(T x){
+		int h = x.hashCode();
+		return (tab[0][h&0xff]
+				^ tab[1][(h>>>8)&0xff]
+				^ tab[2][(h>>>16)&0xff]
+				^ tab[3][(h>>>24)&0xff])
+				>>> (w-d);
+	}
 }
