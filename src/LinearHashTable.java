@@ -328,6 +328,13 @@ public class LinearHashTable<T> implements USet<T> {
 	 */
 	public void resize() {
 		d = 1;
+
+		// http://stackoverflow.com/questions/1050989/double-greater-than-sign-in-java
+		// http://stackoverflow.com/questions/1034640/javas-versus-operator
+		// http://docs.oracle.com/javase/tutorial/java/nutsandbolts/op3.html
+		// http://docs.oracle.com/javase/tutorial/java/nutsandbolts/operators.html
+		// http://stackoverflow.com/questions/141525/what-are-bitwise-shift-bit-shift-operators-and-how-do-they-work
+
 		while ((1 << d) < 3 * n)
 			d++;
 		T[] tOld = t;
